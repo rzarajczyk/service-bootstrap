@@ -10,7 +10,7 @@ postfix = "" if os.getenv("RELEASE", "0") == "1" else ".dev%s" % round(time.time
 
 setuptools.setup(
     name="service-bootstrap",
-    version="0.0.2%s" % postfix,
+    version="0.0.3%s" % postfix,
     description="Framework for setting up service",
     author="Rafał Zarajczyk",
     author_email="rzarajczyk@gmail.com",
