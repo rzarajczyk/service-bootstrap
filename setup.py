@@ -1,12 +1,16 @@
 import setuptools
+import os
+import time
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+postfix = "" if os.getenv("RELEASE", "0") == "1" else ".dev%s" % round(time.time())
+
 
 setuptools.setup(
     name="service-bootstrap",
-    version="0.0.1",
+    version="0.0.2%s" % postfix,
     description="Framework for setting up service",
     author="Rafał Zarajczyk",
     author_email="rzarajczyk@gmail.com",
@@ -21,5 +25,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=["pyyaml~=6.0", "tzlocal"],
+    install_requires=["pyyaml~=6.0", "tzlocal", "pytz"],
 )
