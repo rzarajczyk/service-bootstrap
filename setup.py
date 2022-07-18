@@ -17,7 +17,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rzarajczyk/homie-helpers",
-    keywords=["HOMIE", "MQTT"],
+    keywords=[],
     packages=['bootstrap'],
     package_dir={'bootstrap': './src/bootstrap'},
     classifiers=[
