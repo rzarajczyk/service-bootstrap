@@ -86,6 +86,7 @@ class FilesStorage:
 
     def upload(self, src, dest_name):
         shutil.copy(src, f'{self.dir_name}/{dest_name}')
+        os.chmod(f'{self.dir_name}/{dest_name}', 0o777)
 
     def __setitem__(self, item, src):
         return self.upload(src, item)
