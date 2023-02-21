@@ -7,7 +7,7 @@ import tzlocal
 
 from datetime import datetime
 
-from utils import load_yaml
+from .utils import load_yaml
 
 
 def start_service():
