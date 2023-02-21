@@ -4,9 +4,10 @@ import sys
 import pytz
 
 import tzlocal
-import yaml
 
 from datetime import datetime
+
+from utils import load_yaml
 
 
 def start_service():
@@ -23,8 +24,7 @@ def start_service():
 
         loglevels_from_file = dict()
         if os.path.exists("loglevels.yaml"):
-            with open("loglevels.yaml", 'r') as f:
-                loglevels_from_file = yaml.full_load(f)
+            loglevels_from_file = load_yaml("loglevels.yaml")
         loglevels = {
             'apscheduler.scheduler': 'ERROR',
             'apscheduler.executors.default': 'WARN',
@@ -37,9 +37,8 @@ def start_service():
 
     def configure_file_logging():
         from logging import config as logging_config
-        with open("logging.yaml", 'r') as f:
-            config = yaml.full_load(f)
-            logging_config.dictConfig(config)
+        config = load_yaml("logging.yaml")
+        logging_config.dictConfig(config)
 
     if os.path.exists("logging.yaml"):
         configure_file_logging()
@@ -50,9 +49,8 @@ def start_service():
     logger.info("Starting application!")
     logger.info("Your timezone is %s" % timezone)
 
-    config_file = os.getenv('CONFIG', 'config/config.yaml')
+    config_file = os.getenv('CONFIG', 'config.yaml')
 
-    with open(config_file, 'r') as f:
-        config = yaml.full_load(f)
+    config = load_yaml(config_file)
 
     return config, logger, timezone
